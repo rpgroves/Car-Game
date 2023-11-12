@@ -11,6 +11,9 @@ public class NPCCar : MonoBehaviour
     bool hasTrafficLightAhead = false;
     Rigidbody2D rigidBody;
     TrafficLight trafficLight;
+    float timeToStart = 0.5f;
+    float timer = 0.5f;
+    bool isWaiting = false;
     
 
     void Start()
@@ -19,27 +22,34 @@ public class NPCCar : MonoBehaviour
     }
     void Update()
     {
-        HandleMovement();
+        if(isWaiting)
+            timer += Time.deltaTime;
+        if(timer > timeToStart)
+            isWaiting = false;
+        if(!isWaiting)
+            HandleMovement();
     }
 
     public void HandleMovement()
     {
         if(hasTrafficLightAhead)
         {
-            Debug.Log("checking for light to change");
             bool isNorthSouthGreen = trafficLight.GetIsNorthSouthGreen();
-            Debug.Log(isNorthSouthGreen);
             if((direction == 1 || direction == 2) && isNorthSouthGreen)
             {
                 Debug.Log("green!");
                 hasTrafficLightAhead = false;
                 hasObstacleAhead = false;
+                isWaiting = true;
+                return;
             }
             else if((direction == 3 || direction == 4) && !isNorthSouthGreen)
             {
                 Debug.Log("green!");
                 hasTrafficLightAhead = false;
                 hasObstacleAhead = false;
+                isWaiting = true;
+                return;
             }
             else
             {
@@ -47,7 +57,9 @@ public class NPCCar : MonoBehaviour
             }
         }
         if(hasObstacleAhead)
+        {
             return;
+        }
         Vector3 v = new Vector3(0.0f, 1.0f, 0.0f);
         Vector3 deltaMove = v * moveSpeed * Time.deltaTime;
         rigidBody.AddForce(transform.right * deltaMove.y);
