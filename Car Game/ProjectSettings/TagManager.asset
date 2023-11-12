@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Rider
   - Destination
+  - GasPump
   layers:
   - Default
   - TransparentFX

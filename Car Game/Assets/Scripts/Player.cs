@@ -14,8 +14,8 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject target;
     float overlapRadius = 3.0f;
     float money = 0.0f;
-    float gasMax = 100.0f;
-    float gas = 100.0f;
+    float gasMax = 15.0f;
+    float gas = 15.0f;
     float gasTimer = 0.0f;
     PlayerMovement playerMovement;
     bool hasRider = false;
@@ -54,6 +54,11 @@ public class Player : MonoBehaviour
                 compass.SetActive(false);
                 hasRider = false;
             }
+            if(collider.gameObject.tag == "GasPump")
+            {
+                Debug.Log("GasPump!");
+                collider.gameObject.GetComponent<GasPump>().BuyGas(this);
+            }
         }
     }
     void UpdateCompass()
@@ -79,6 +84,8 @@ public class Player : MonoBehaviour
     public void SubtractMoney(float m)
     {
         money -= m;
+        moneyText.text = "$" + money.ToString("F2");
+        moneyText2.text = "$" + money.ToString("F2");
     }
     public void DecrementGas()
     {
@@ -89,6 +96,14 @@ public class Player : MonoBehaviour
             playerMovement.SetIsThereGas(false);
         }
         gasSlider.value = gas/gasMax;
+    }
+    public float GetGas()
+    {
+        return gas;
+    }
+    public float GetGasMax()
+    {
+        return gasMax;
     }
     public void FillGas(float g)
     {
@@ -101,5 +116,6 @@ public class Player : MonoBehaviour
         {
             gas = gasMax;
         }
+        gasSlider.value = gas/gasMax;
     }
 }
