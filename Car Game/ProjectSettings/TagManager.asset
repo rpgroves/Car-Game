@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Rider
+  - Destination
   layers:
   - Default
   - TransparentFX
@@ -40,4 +42,19 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Ground
+    uniqueID: 481774095
+    locked: 0
+  - name: Building
+    uniqueID: 2801408197
+    locked: 0
+  - name: Entities
+    uniqueID: 2579415485
+    locked: 0
+  - name: Cover
+    uniqueID: 4267539557
+    locked: 0
+  - name: UI
+    uniqueID: 2250539195
     locked: 0

@@ -1,0 +1,11 @@
+-driving game 2d top down
+-you are a taxi driver
+-you free roam to find riders
+-you have a compass telling you where to go
+-crashing deducts money you make
+-you can fill your car with gas and upgrade it
+-pedestrians and other cars move around the area
+	-cars go horizontally or vertically, stopping at red lights
+	and going at green lights
+	-pedestrians cross in front of cars that have red lights
+	and walk along sidewalks 
