@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 4125492914724989324}
   m_Layer: 0
   m_Name: NPC Car SouthSpawn
-  m_TagString: Untagged
+  m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -241,3 +241,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   direction: 2
   moveSpeed: 1600
+  waitTime: 0.5

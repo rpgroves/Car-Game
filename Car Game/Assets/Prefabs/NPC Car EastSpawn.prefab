@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 3215170526539994468}
   m_Layer: 0
   m_Name: NPC Car EastSpawn
-  m_TagString: Untagged
+  m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -241,3 +241,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   direction: 3
   moveSpeed: 1600
+  waitTime: 0.5

@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class NPCCar : MonoBehaviour
 {
-    [SerializeField] int direction = 1; //1 = north, 2 = south, 3 = east, 4 = west
+    [SerializeField] int direction = 1; //1 = northSpawn, 2 = southSpawn, 3 = eastSpawn, 4 = westSpawn
     [SerializeField] float moveSpeed = 3.0f;
     bool hasPassedExtraZone = false;
     bool hasObstacleAhead = false;
     bool hasTrafficLightAhead = false;
     Rigidbody2D rigidBody;
     TrafficLight trafficLight;
-    float timeToStart = 0.5f;
+    [SerializeField] float waitTime = 0.5f;
     float timer = 0.5f;
     bool isWaiting = false;
+    bool isStoppedAtLight = false;
     
 
     void Start()
@@ -24,7 +25,7 @@ public class NPCCar : MonoBehaviour
     {
         if(isWaiting)
             timer += Time.deltaTime;
-        if(timer > timeToStart)
+        if(timer > waitTime)
             isWaiting = false;
         if(!isWaiting)
             HandleMovement();
@@ -37,22 +38,29 @@ public class NPCCar : MonoBehaviour
             bool isNorthSouthGreen = trafficLight.GetIsNorthSouthGreen();
             if((direction == 1 || direction == 2) && isNorthSouthGreen)
             {
-                Debug.Log("green!");
                 hasTrafficLightAhead = false;
                 hasObstacleAhead = false;
-                isWaiting = true;
+                if(isStoppedAtLight)
+                {
+                    isWaiting = true;
+                    timer = 0.0f;
+                }
                 return;
             }
             else if((direction == 3 || direction == 4) && !isNorthSouthGreen)
             {
-                Debug.Log("green!");
                 hasTrafficLightAhead = false;
                 hasObstacleAhead = false;
-                isWaiting = true;
+                if(isStoppedAtLight)
+                {
+                    isWaiting = true;
+                    timer = 0.0f;
+                }
                 return;
             }
             else
             {
+                isStoppedAtLight = true;
                 return;
             }
         }
@@ -73,10 +81,49 @@ public class NPCCar : MonoBehaviour
             hasTrafficLightAhead = true;
         }
         else
+        {
+            if(direction == 1)
+            {
+                if(other.gameObject.transform.position.y > gameObject.transform.position.y)
+                {
+                    return;
+                }
+            }
+            if(direction == 2)
+            {
+                if(other.gameObject.transform.position.y < gameObject.transform.position.y)
+                {
+                    return;
+                }
+            }
+            if(direction == 3)
+            {
+                if(other.gameObject.transform.position.x > gameObject.transform.position.x)
+                {
+                    return;
+                }
+            }
+            if(direction == 4)
+            {
+                if(other.gameObject.transform.position.x < gameObject.transform.position.x)
+                {
+                    return;
+                }
+            }
             hasObstacleAhead = true;
+        }
     }
     void OnTriggerExit2D(Collider2D other)
     {
         hasObstacleAhead = false;
+    }
+
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        Debug.Log("ouch!");
+        if(other.gameObject.tag == "NPC")
+        {
+            Destroy(this);
+        }
     }
 }

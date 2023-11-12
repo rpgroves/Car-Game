@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2138355248120053722}
   m_Layer: 0
   m_Name: NPC Car NorthSpawn
-  m_TagString: Untagged
+  m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -155,8 +155,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a91753c8e489f24f9d08490acc1ea86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: 2
+  direction: 1
   moveSpeed: 1600
+  waitTime: 0.5
 --- !u!1 &4561331674840570862
 GameObject:
   m_ObjectHideFlags: 0

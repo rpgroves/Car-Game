@@ -8,6 +8,7 @@ TagManager:
   - GasPump
   - Passenger
   - TrafficLight
+  - NPC
   layers:
   - Default
   - TransparentFX

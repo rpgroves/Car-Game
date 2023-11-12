@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Destination : MonoBehaviour
 {
-    float payment = 10.0f;
+    [SerializeField] float payment = 10.0f;
     void Start()
     {
         
