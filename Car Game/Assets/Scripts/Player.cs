@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
     float gas = 15.0f;
     float gasTimer = 0.0f;
     PlayerMovement playerMovement;
-    bool hasRider = false;
+    bool hasPassenger = false;
     
 
     void Start()
@@ -41,18 +41,18 @@ public class Player : MonoBehaviour
         {
             if(collider.gameObject == gameObject)
                 continue;
-            if(collider.gameObject.tag == "Rider" && !hasRider)
+            if(collider.gameObject.tag == "Passenger" && !hasPassenger)
             {
-                target = collider.gameObject.GetComponent<Rider>().Pickup().gameObject;
+                target = collider.gameObject.GetComponent<Passenger>().Pickup().gameObject;
                 Destroy(collider.gameObject);
                 compass.SetActive(true);
-                hasRider = true;
+                hasPassenger = true;
             }
-            if(collider.gameObject.tag == "Destination" && hasRider)
+            if(collider.gameObject.tag == "Destination" && hasPassenger)
             {
                 collider.gameObject.GetComponent<Destination>().Dropoff(this);
                 compass.SetActive(false);
-                hasRider = false;
+                hasPassenger = false;
             }
             if(collider.gameObject.tag == "GasPump")
             {

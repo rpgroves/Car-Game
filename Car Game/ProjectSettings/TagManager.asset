@@ -4,9 +4,10 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Rider
   - Destination
   - GasPump
+  - Passenger
+  - TrafficLight
   layers:
   - Default
   - TransparentFX

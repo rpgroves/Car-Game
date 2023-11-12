@@ -5,9 +5,9 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] float moveSpeed = 3f;
+    [SerializeField] float moveSpeed = 3.0f;
     float moveSpeedMax;
-    [SerializeField] float rotateSpeed = 3f;
+    [SerializeField] float rotateSpeed = 3.0f;
     [SerializeField] float boostMulti = 1.5f;
     Vector2 rawInput;
     Vector2 rawRotation;

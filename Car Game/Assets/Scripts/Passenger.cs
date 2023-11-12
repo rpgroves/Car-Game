@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Rider : MonoBehaviour
+public class Passenger : MonoBehaviour
 {
     [SerializeField] Destination destination;
     void Start()
