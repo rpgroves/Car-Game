@@ -157,7 +157,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   direction: 1
   moveSpeed: 1600
-  waitTime: 0.5
+  waitTime: 1
 --- !u!1 &4561331674840570862
 GameObject:
   m_ObjectHideFlags: 0

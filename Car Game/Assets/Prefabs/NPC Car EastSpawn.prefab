@@ -241,4 +241,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   direction: 3
   moveSpeed: 1600
-  waitTime: 0.5
+  waitTime: 1

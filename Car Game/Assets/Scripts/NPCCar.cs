@@ -35,6 +35,11 @@ public class NPCCar : MonoBehaviour
     {
         if(hasTrafficLightAhead)
         {
+            if(trafficLight.GetIsYellow())
+            {
+                hasObstacleAhead = true;
+                return;
+            }
             bool isNorthSouthGreen = trafficLight.GetIsNorthSouthGreen();
             if((direction == 1 || direction == 2) && isNorthSouthGreen)
             {
@@ -121,9 +126,9 @@ public class NPCCar : MonoBehaviour
     void OnCollisionEnter2D(Collision2D other)
     {
         Debug.Log("ouch!");
-        if(other.gameObject.tag == "NPC")
+        if(other.gameObject.tag == "NPC" || other.gameObject.tag == "Bounds")
         {
-            Destroy(this);
+            Destroy(this.gameObject);
         }
     }
 }

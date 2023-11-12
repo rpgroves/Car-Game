@@ -9,6 +9,7 @@ TagManager:
   - Passenger
   - TrafficLight
   - NPC
+  - Bounds
   layers:
   - Default
   - TransparentFX
