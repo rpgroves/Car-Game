@@ -5,21 +5,24 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] float spawnTimerLength = 5.0f;
-    [SerializeField] int randomFactor = 5;
+    [Header("Config")]
+    public bool spawnCars = true;
+    public bool randomSpawn = true;
+    public float spawnTimerLength = 5.0f;
+    public int randomFactor = 5;
     float spawnTimer = 5.0f;
-    [SerializeField] GameObject northCarPrefab;
-    [SerializeField] GameObject southCarPrefab;
-    [SerializeField] GameObject eastCarPrefab;
-    [SerializeField] GameObject westCarPrefab;
-    [SerializeField] GameObject passengerPrefab;
-    [SerializeField] GameObject destinationPrefab;
-    [SerializeField] List<GameObject> northCarSpawns = new List<GameObject>();
-    [SerializeField] List<GameObject> southCarSpawns = new List<GameObject>();
-    [SerializeField] List<GameObject> eastCarSpawns = new List<GameObject>();
-    [SerializeField] List<GameObject> westCarSpawns = new List<GameObject>();
-    [SerializeField] List<TripNode> passengerSpawns = new List<TripNode>();
-    [SerializeField] List<TripNode> destinationSpawns = new List<TripNode>();
+    public GameObject northCarPrefab;
+    public GameObject southCarPrefab;
+    public GameObject eastCarPrefab;
+    public GameObject westCarPrefab;
+    public GameObject passengerPrefab;
+    public GameObject destinationPrefab;
+    public List<GameObject> northCarSpawns = new List<GameObject>();
+    public List<GameObject> southCarSpawns = new List<GameObject>();
+    public List<GameObject> eastCarSpawns = new List<GameObject>();
+    public List<GameObject> westCarSpawns = new List<GameObject>();
+    public List<TripNode> passengerSpawns = new List<TripNode>();
+    public List<TripNode> destinationSpawns = new List<TripNode>();
 
 
     void Start()
@@ -29,6 +32,14 @@ public class GameManager : MonoBehaviour
 
     // Update is called once per frame
     void Update()
+    {
+        if(spawnCars){
+            HandleCarSpawns();
+        }
+        
+    }
+
+    void HandleCarSpawns()
     {
         spawnTimer += Time.deltaTime;
         if(spawnTimer > spawnTimerLength)
@@ -42,24 +53,44 @@ public class GameManager : MonoBehaviour
     {
         foreach (GameObject node in northCarSpawns)
         {
+            if(!randomSpawn)
+            {
+                Instantiate(northCarPrefab, node.transform);
+                continue;
+            }
             int random = Random.Range(0, randomFactor);
             if(random == 1)
                 Instantiate(northCarPrefab, node.transform);
         }
         foreach (GameObject node in southCarSpawns)
         {
+            if(!randomSpawn)
+            {
+                Instantiate(southCarPrefab, node.transform);
+                continue;
+            }
             int random = Random.Range(0, randomFactor);
             if(random == 1)
                 Instantiate(southCarPrefab, node.transform);
         }
         foreach (GameObject node in eastCarSpawns)
         {
+            if(!randomSpawn)
+            {
+                Instantiate(eastCarPrefab, node.transform);
+                continue;
+            }
             int random = Random.Range(0, randomFactor);
             if(random == 1)
                 Instantiate(eastCarPrefab, node.transform);
         }
         foreach (GameObject node in westCarSpawns)
         {
+            if(!randomSpawn)
+            {
+                Instantiate(westCarPrefab, node.transform);
+                continue;
+            }
             int random = Random.Range(0, randomFactor);
             if(random == 1)
                 Instantiate(westCarPrefab, node.transform);

@@ -6,12 +6,13 @@ using TMPro;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] Slider gasSlider;
-    [SerializeField] TextMeshProUGUI moneyText;
-    [SerializeField] TextMeshProUGUI moneyText2;
-    [SerializeField] float gasLostPerSecond = 0.33f;
-    [SerializeField] GameObject compass;
-    [SerializeField] GameObject target;
+    public Slider gasSlider;
+    public TextMeshProUGUI moneyText;
+    public TextMeshProUGUI moneyText2;
+    public float gasLostPerSecond = 0.33f;
+    public GameObject compass;
+    public GameObject target;
+    
     float overlapRadius = 3.0f;
     float money = 0.0f;
     float gasMax = 15.0f;
@@ -28,14 +29,12 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        //Debug.Log(gas);
         //AddMoney(0.01f);
         if(target != null)
             UpdateCompass();
     }
     void OnInteract()
     {
-        Debug.Log("scanning!");
         foreach(Collider2D collider in Physics2D.OverlapCircleAll(transform.position, overlapRadius))
         {
             if(collider.gameObject == gameObject)
@@ -55,7 +54,6 @@ public class Player : MonoBehaviour
             }
             if(collider.gameObject.tag == "GasPump")
             {
-                Debug.Log("GasPump!");
                 collider.gameObject.GetComponent<GasPump>().BuyGas(this);
             }
         }

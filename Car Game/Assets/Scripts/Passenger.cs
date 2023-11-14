@@ -5,20 +5,10 @@ using UnityEngine;
 public class Passenger : MonoBehaviour
 {
     [SerializeField] Destination destination;
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
-    }
 
     public Destination Pickup()
     {
         destination.gameObject.SetActive(true);
-        Debug.Log("Passenger here!");
         return destination;
     }
 }

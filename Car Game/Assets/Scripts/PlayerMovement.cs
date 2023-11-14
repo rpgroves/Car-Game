@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement2 : MonoBehaviour
 {
-    [SerializeField] float moveSpeed = 3.0f;
+    [Header("Car Settings")]
+    public float moveSpeed = 3.0f;
+    public float rotateSpeed = 3.0f;
+    
     float moveSpeedMax;
-    [SerializeField] float rotateSpeed = 3.0f;
     Vector2 rawInput;
     Vector2 rawRotation;
     bool isPlayerInControl = true;

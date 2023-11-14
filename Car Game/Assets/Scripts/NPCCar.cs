@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class NPCCar : MonoBehaviour
 {
-    [SerializeField] int direction = 1; //1 = northSpawn, 2 = southSpawn, 3 = eastSpawn, 4 = westSpawn
-    [SerializeField] float moveSpeed = 3.0f;
+    public int direction = 1; //1 = northSpawn, 2 = southSpawn, 3 = eastSpawn, 4 = westSpawn
+    public float moveSpeed = 3.0f;
+    public float waitTime = 0.5f;
+    
     bool hasObstacleAhead = false;
     bool hasTrafficLightAhead = false;
     Rigidbody2D rigidBody;
     TrafficLight trafficLight;
-    [SerializeField] float waitTime = 0.5f;
+    
     float timer = 0.5f;
     bool isWaiting = false;
     bool isStoppedAtLight = false;
@@ -40,18 +42,7 @@ public class NPCCar : MonoBehaviour
                 return;
             }
             bool isNorthSouthGreen = trafficLight.GetIsNorthSouthGreen();
-            if((direction == 1 || direction == 2) && isNorthSouthGreen)
-            {
-                hasTrafficLightAhead = false;
-                hasObstacleAhead = false;
-                if(isStoppedAtLight)
-                {
-                    isWaiting = true;
-                    timer = 0.0f;
-                }
-                return;
-            }
-            else if((direction == 3 || direction == 4) && !isNorthSouthGreen)
+            if(((direction == 1 || direction == 2) && isNorthSouthGreen) || ((direction == 3 || direction == 4) && !isNorthSouthGreen))
             {
                 hasTrafficLightAhead = false;
                 hasObstacleAhead = false;
@@ -77,56 +68,70 @@ public class NPCCar : MonoBehaviour
         rigidBody.AddForce(transform.right * deltaMove.y);
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    // void OnTriggerEnter2D(Collider2D other)
+    // {
+    //     Debug.Log("trigger entered");
+    //     if(other.gameObject.tag == "Bounds")
+    //         return;
+    //     if(other.gameObject.tag == "TrafficLight")
+    //     {
+    //         trafficLight = other.gameObject.GetComponent<TrafficLight>();
+    //         hasTrafficLightAhead = true;
+    //     }
+    //     else
+    //     {
+    //         if(direction == 1)
+    //         {
+    //             if(other.gameObject.transform.position.y > gameObject.transform.position.y)
+    //             {
+    //                 return;
+    //             }
+    //         }
+    //         if(direction == 2)
+    //         {
+    //             if(other.gameObject.transform.position.y < gameObject.transform.position.y)
+    //             {
+    //                 return;
+    //             }
+    //         }
+    //         if(direction == 3)
+    //         {
+    //             if(other.gameObject.transform.position.x > gameObject.transform.position.x)
+    //             {
+    //                 return;
+    //             }
+    //         }
+    //         if(direction == 4)
+    //         {
+    //             if(other.gameObject.transform.position.x < gameObject.transform.position.x)
+    //             {
+    //                 return;
+    //             }
+    //         }
+    //         hasObstacleAhead = true;
+    //     }
+    // }
+    public int GetDirection()
     {
-        if(other.gameObject.tag == "Bounds")
-            return;
-        if(other.gameObject.tag == "TrafficLight")
-        {
-            trafficLight = other.gameObject.GetComponent<TrafficLight>();
-            hasTrafficLightAhead = true;
-        }
-        else
-        {
-            if(direction == 1)
-            {
-                if(other.gameObject.transform.position.y > gameObject.transform.position.y)
-                {
-                    return;
-                }
-            }
-            if(direction == 2)
-            {
-                if(other.gameObject.transform.position.y < gameObject.transform.position.y)
-                {
-                    return;
-                }
-            }
-            if(direction == 3)
-            {
-                if(other.gameObject.transform.position.x > gameObject.transform.position.x)
-                {
-                    return;
-                }
-            }
-            if(direction == 4)
-            {
-                if(other.gameObject.transform.position.x < gameObject.transform.position.x)
-                {
-                    return;
-                }
-            }
-            hasObstacleAhead = true;
-        }
+        return direction;
+    }
+    public void SetHasObstacleAhead(bool b)
+    {
+        hasObstacleAhead = b;
+    }
+    public void SetTrafficLight(Collider2D other)
+    {
+        trafficLight = other.gameObject.GetComponent<TrafficLight>();
+        hasTrafficLightAhead = true;
     }
     void OnTriggerExit2D(Collider2D other)
     {
-        hasObstacleAhead = false;
+        if(!hasTrafficLightAhead)
+            hasObstacleAhead = false;
     }
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        Debug.Log("ouch!");
         if(other.gameObject.tag == "NPC" || other.gameObject.tag == "Bounds")
         {
             Destroy(this.gameObject);
