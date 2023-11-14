@@ -6,7 +6,6 @@ public class NPCCar : MonoBehaviour
 {
     [SerializeField] int direction = 1; //1 = northSpawn, 2 = southSpawn, 3 = eastSpawn, 4 = westSpawn
     [SerializeField] float moveSpeed = 3.0f;
-    bool hasPassedExtraZone = false;
     bool hasObstacleAhead = false;
     bool hasTrafficLightAhead = false;
     Rigidbody2D rigidBody;
@@ -80,6 +79,8 @@ public class NPCCar : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        if(other.gameObject.tag == "Bounds")
+            return;
         if(other.gameObject.tag == "TrafficLight")
         {
             trafficLight = other.gameObject.GetComponent<TrafficLight>();

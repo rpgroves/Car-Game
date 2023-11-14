@@ -6,9 +6,8 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] float spawnTimerLength = 5.0f;
+    [SerializeField] int randomFactor = 5;
     float spawnTimer = 5.0f;
-    [SerializeField] float passengerTimerLength = 5.0f;
-    float passengerTimer = 5.0f;
     [SerializeField] GameObject northCarPrefab;
     [SerializeField] GameObject southCarPrefab;
     [SerializeField] GameObject eastCarPrefab;
@@ -19,8 +18,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] List<GameObject> southCarSpawns = new List<GameObject>();
     [SerializeField] List<GameObject> eastCarSpawns = new List<GameObject>();
     [SerializeField] List<GameObject> westCarSpawns = new List<GameObject>();
-    [SerializeField] List<GameObject> passengerSpawns = new List<GameObject>();
-    [SerializeField] List<GameObject> destinationSpawns = new List<GameObject>();
+    [SerializeField] List<TripNode> passengerSpawns = new List<TripNode>();
+    [SerializeField] List<TripNode> destinationSpawns = new List<TripNode>();
+
 
     void Start()
     {
@@ -42,40 +42,48 @@ public class GameManager : MonoBehaviour
     {
         foreach (GameObject node in northCarSpawns)
         {
-            Instantiate(northCarPrefab, node.transform);
+            int random = Random.Range(0, randomFactor);
+            if(random == 1)
+                Instantiate(northCarPrefab, node.transform);
         }
         foreach (GameObject node in southCarSpawns)
         {
-            Instantiate(southCarPrefab, node.transform);
+            int random = Random.Range(0, randomFactor);
+            if(random == 1)
+                Instantiate(southCarPrefab, node.transform);
         }
         foreach (GameObject node in eastCarSpawns)
         {
-            Instantiate(eastCarPrefab, node.transform);
+            int random = Random.Range(0, randomFactor);
+            if(random == 1)
+                Instantiate(eastCarPrefab, node.transform);
         }
         foreach (GameObject node in westCarSpawns)
         {
-            Instantiate(westCarPrefab, node.transform);
+            int random = Random.Range(0, randomFactor);
+            if(random == 1)
+                Instantiate(westCarPrefab, node.transform);
         }
     }
 
     void SpawnPassenger()
     {
-        foreach (GameObject node in passengerSpawns)
-        {
-            if(!node.GetComponent<PassengerSpawnNode>().GetHasPassenger())
-            {
-                node.GetComponent<PassengerSpawnNode>().SpawnPassenger(passengerPrefab);
-                node.GetComponent<PassengerSpawnNode>().SetHasPassenger(true);
-            }
-        }
-        foreach (GameObject node in destinationSpawns)
-        {
-            if(!node.GetComponent<DestinationSpawnNode>().GetHasDestination())
-            {
-                node.GetComponent<DestinationSpawnNode>().SpawnDestination(destinationPrefab);
-                node.GetComponent<DestinationSpawnNode>().SetHasDestination(true);
-            }
-        }
+        // foreach (GameObject node in passengerSpawns)
+        // {
+        //     if(!node.GetComponent<PassengerSpawnNode>().GetHasPassenger())
+        //     {
+        //         node.GetComponent<PassengerSpawnNode>().SpawnPassenger(passengerPrefab);
+        //         node.GetComponent<PassengerSpawnNode>().SetHasPassenger(true);
+        //     }
+        // }
+        // foreach (GameObject node in destinationSpawns)
+        // {
+        //     if(!node.GetComponent<DestinationSpawnNode>().GetHasDestination())
+        //     {
+        //         node.GetComponent<DestinationSpawnNode>().SpawnDestination(destinationPrefab);
+        //         node.GetComponent<DestinationSpawnNode>().SetHasDestination(true);
+        //     }
+        // }
     }
 
     public void LoadScene(int index)

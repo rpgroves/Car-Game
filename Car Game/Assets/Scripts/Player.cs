@@ -16,7 +16,6 @@ public class Player : MonoBehaviour
     float money = 0.0f;
     float gasMax = 15.0f;
     float gas = 15.0f;
-    float gasTimer = 0.0f;
     PlayerMovement playerMovement;
     bool hasPassenger = false;
     

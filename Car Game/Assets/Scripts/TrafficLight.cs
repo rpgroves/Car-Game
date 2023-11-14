@@ -39,7 +39,7 @@ public class TrafficLight : MonoBehaviour
         if(isYellow)
         {
             currentYellowTime += Time.deltaTime;
-            if(currentYellowTime > timeBetweenLights)
+            if(currentYellowTime > timeForYellow)
             {
                 SwapLights();
                 currentGreenTime = 0.0f;

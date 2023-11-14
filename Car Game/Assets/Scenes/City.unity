@@ -6296,7 +6296,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnTimerLength: 5
-  passengerTimerLength: 5
+  randomFactor: 5
   northCarPrefab: {fileID: 1348876201809388147, guid: 5ddf9fa6c66c51b40bbabcce70a78911, type: 3}
   southCarPrefab: {fileID: 8465049996506990636, guid: 2947f753a95e71b4e9b08de494e4ffa1, type: 3}
   eastCarPrefab: {fileID: 4662303961225146160, guid: 156aca5963ba7334eb71a9a50e331dac, type: 3}
@@ -6636,7 +6636,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5, y: 8}
+  m_Size: {x: 8, y: 8}
   m_EdgeRadius: 0
 --- !u!1 &575244149
 GameObject:
@@ -9445,7 +9445,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 8, y: 5}
+  m_Size: {x: 8, y: 8}
   m_EdgeRadius: 0
 --- !u!1 &836424941
 GameObject:
@@ -14406,7 +14406,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5, y: 8}
+  m_Size: {x: 8, y: 8}
   m_EdgeRadius: 0
 --- !u!1 &1228219201
 GameObject:
@@ -15832,7 +15832,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 8, y: 5}
+  m_Size: {x: 8, y: 8}
   m_EdgeRadius: 0
 --- !u!1 &1411349269
 GameObject:
@@ -16040,8 +16040,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2000
-  rotateSpeed: 6
-  boostMulti: 1.5
+  rotateSpeed: 9
 --- !u!114 &1417165118
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22450,7 +22449,7 @@ Transform:
   m_GameObject: {fileID: 2006281742}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -72.33, y: -20.93, z: 0}
+  m_LocalPosition: {x: -72.33, y: -24.65, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -23283,7 +23282,7 @@ Transform:
   m_GameObject: {fileID: 2044858305}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -72.33, y: -19.71, z: 0}
+  m_LocalPosition: {x: -72.33, y: -23.429998, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -23598,7 +23597,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 8, y: 5}
+  m_Size: {x: 8, y: 8}
   m_EdgeRadius: 0
 --- !u!1 &2088800744
 GameObject:
