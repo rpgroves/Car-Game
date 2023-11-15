@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     public float accelerationFactor = 30.0f;
     public float turnFactor = 3.5f;
     public float maxSpeed = 3.5f;
+    public Player player;
 
     //local variables
     float accelerationInput = 0.0f;
@@ -31,12 +32,18 @@ public class PlayerMovement : MonoBehaviour
     }
     void ApplyEngineForce()
     {
+        if(accelerationInput != 0)
+            player.DecrementGas();
+        float multi = 1.0f;
+        if(!isThereGas)
+            multi = 0.5f;
+
         velocityVsUp = Vector2.Dot(transform.up, rigidbody.velocity);
-        if(velocityVsUp > maxSpeed && accelerationInput > 0)
+        if(velocityVsUp > maxSpeed * multi && accelerationInput > 0)
             return;
-        if(velocityVsUp < -maxSpeed * 0.5f && accelerationInput < 0)
+        if(velocityVsUp < -maxSpeed * multi * 0.5f && accelerationInput < 0)
             return;
-        if(rigidbody.velocity.sqrMagnitude > maxSpeed * maxSpeed && accelerationInput > 0)
+        if(rigidbody.velocity.sqrMagnitude > maxSpeed * maxSpeed * multi * multi && accelerationInput > 0)
             return;
 
         if(accelerationInput == 0)
@@ -45,6 +52,7 @@ public class PlayerMovement : MonoBehaviour
             rigidbody.drag = 0;
 
         Vector2 engineForceVector = transform.up * accelerationInput * accelerationFactor;
+        
         rigidbody.AddForce(engineForceVector, ForceMode2D.Force);
     }
 
